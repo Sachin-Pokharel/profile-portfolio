@@ -13,9 +13,19 @@
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
 
   <!--
-    - custom css link
+    - custom css link with cache busting
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <script>
+    // Automatic cache busting for CSS - runs before CSS is loaded
+    (function() {
+      const timestamp = new Date().getTime();
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = './assets/css/style.css?v=' + timestamp;
+      link.id = 'main-stylesheet';
+      document.head.appendChild(link);
+    })();
+  </script>
 
   <!--
     - google font link
